@@ -40,21 +40,29 @@ void UsartSend(char* szData)
 
 void UsartSend(int num)
 {
-	char buff[5];
+	char buff[6];
+	uint16_t unsignedVal;
+
 	if(num < 0)
 	{
-		num=-num;
+		unsignedVal = -num;
 		while(!(UCSR0A & (1<<UDRE0)));
 		UDR0 = '-';
 	}
+	else
+	{
+		unsignedVal = num;
+	}
+	
 
 	char* ptr = buff;
 
 	do 
 	{
-		*ptr++ = num%10 + '0';
-		num/=10;
-	} while (num);
+		*ptr++ = unsignedVal % 10 + '0';
+		unsignedVal /= 10;
+	} 
+	while (unsignedVal);
 
 	ptr--;
 

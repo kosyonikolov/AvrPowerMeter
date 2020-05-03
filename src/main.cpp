@@ -16,7 +16,7 @@ int main(void)
     UsartInit();
     TwiInit();
 
-    if (!mpu.Init(GYRO_RANGE_250, ACC_RANGE_8G))
+    if (!mpu.Init(GYRO_RANGE_2000, ACC_RANGE_8G))
     {
         UsartSend("Couldn't init, please reset\r\n\0");
     }
@@ -35,14 +35,16 @@ int main(void)
 		UsartSend(az); UsartSend('\t');		
 		*/
 
+        /*
         UsartSend(gx);
         UsartSend('\t');
         UsartSend(gy);
         UsartSend('\t');
         UsartSend(gz);
         UsartSend('\t');
+        */
 
-        /*UsartSend(temp);*/
+        UsartSend(temp);
 
         UsartNewLine();
     }
