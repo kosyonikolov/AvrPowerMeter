@@ -2,61 +2,53 @@
 #include <util/delay.h>
 
 #include "usart.h"
+#include "Mpu6050.h"
 
-#define LED_MASK ((1 << 5) - 1)
+Mpu6050 mpu(false);
 
-int main()
+int ax, ay, az;
+int gx, gy, gz;
+
+int temp;
+
+int main(void)
 {
-    DDRB |= LED_MASK;
-    PORTB = 0;
-
     UsartInit();
-    int currentDelay = 1000;
-    int newDelay = 0;
+    TwiInit();
 
-    const int minDelay = 50;
+    if (!mpu.Init(GYRO_RANGE_250, ACC_RANGE_8G))
+    {
+        UsartSend("Couldn't init, please reset\r\n\0");
+    }
 
-    int count = 0;
     while (true)
     {
-        PORTB = count & LED_MASK;
-        count++;
-        if (count > LED_MASK)
-        {
-            count = 0;
-        }
+        if (!mpu.GetGyroscope(&gx, &gy, &gz))
+            break;
+        if (!mpu.GetAccelerometer(&ax, &ay, &az))
+            break;
+        if (!mpu.GetTemperature(&temp))
+            break;
+        /*
+		UsartSend(ax); UsartSend('\t');
+		UsartSend(ay); UsartSend('\t');
+		UsartSend(az); UsartSend('\t');		
+		*/
 
-        // Check uart for command
-        char inChar;
-        while (UsartRead(&inChar))
-        {
-            UsartSend(inChar);
-            if (inChar == '\n')
-            {
-                if (newDelay < minDelay)
-                {
-                    UsartSend("Requested delay is smaller than min: ");
-                    UsartSend(newDelay);
-                    UsartNewLine();
-                    newDelay = 0;
-                }
-                else
-                {
-                    currentDelay = newDelay;
-                    newDelay = 0;
-                }
-            }
-            else if (inChar >= '0' && inChar <= '9')
-            {
-                newDelay *= 10;
-                newDelay += inChar - '0';
-            }
-            else // invalid character
-            {
-                newDelay = 0;
-            }
-        }
+        UsartSend(gx);
+        UsartSend('\t');
+        UsartSend(gy);
+        UsartSend('\t');
+        UsartSend(gz);
+        UsartSend('\t');
 
-        _delay_ms(currentDelay);
+        /*UsartSend(temp);*/
+
+        UsartNewLine();
     }
+
+    UsartSend("Error occured, please reset...\r\n\0");
+
+    while (1)
+        ;
 }

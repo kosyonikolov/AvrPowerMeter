@@ -84,7 +84,7 @@ SRC =
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = ../src/main.cpp ../src/usart.cpp
+CPPSRC = ../src/main.cpp ../src/usart.cpp ../src/twi.cpp ../src/TwiUtils.cpp ../src/Mpu6050.cpp
 
 
 # List Assembler source files here.
