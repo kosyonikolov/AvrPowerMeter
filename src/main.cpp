@@ -11,10 +11,24 @@ int gx, gy, gz;
 
 int temp;
 
+void dummyCount()
+{
+    int count = 0;
+    while (true)
+    {
+        UsartSend(count);
+        UsartNewLine();
+        count++;
+        _delay_ms(1000);
+    }
+}
+
 int main(void)
 {
     UsartInit();
     TwiInit();
+
+    dummyCount();
 
     if (!mpu.Init(GYRO_RANGE_2000, ACC_RANGE_8G))
     {

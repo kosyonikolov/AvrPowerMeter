@@ -1,2 +1,8 @@
 build/*
 !build/Makefile
+p1.eep
+p1.elf
+p1.hex
+p1.lss
+p1.map
+p1.sym

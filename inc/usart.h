@@ -1,7 +1,7 @@
 #ifndef USART_H_
 #define USART_H_
 
-#define BAUD 115200 
+#define BAUD 57600 
 
 #include <avr/io.h>
 #include <avr/interrupt.h>

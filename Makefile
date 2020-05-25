@@ -84,7 +84,7 @@ SRC =
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = ../src/main.cpp ../src/usart.cpp ../src/twi.cpp ../src/TwiUtils.cpp ../src/Mpu6050.cpp
+CPPSRC = src/main.cpp src/usart.cpp src/twi.cpp src/TwiUtils.cpp src/Mpu6050.cpp
 
 
 # List Assembler source files here.
@@ -114,7 +114,7 @@ DEBUG = dwarf-2
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
-EXTRAINCDIRS = ../inc/
+EXTRAINCDIRS = inc/
 
 
 # Compiler flag to set the C Standard level.
@@ -383,7 +383,7 @@ LST = $(SRC:%.c=$(OBJDIR)/%.lst) $(CPPSRC:%.cpp=$(OBJDIR)/%.lst) $(ASRC:%.S=$(OB
 
 
 # Compiler flags to generate dependency files.
-GENDEPFLAGS = -MMD -MP -MF .dep/$(@F).d
+GENDEPFLAGS = -MMD -MP -MF build/.dep/$(@F).d
 
 
 # Combine all necessary flags and optional flags.
@@ -578,8 +578,8 @@ $(OBJDIR)/%.o : %.S
 clean: begin clean_list end
 
 clean_list :
-	del .dep /s /Q
-	del src /s /Q
+	del build\.dep /s /Q
+	del build\src /s /Q
 	$(REMOVE) $(TARGET).hex
 	$(REMOVE) $(TARGET).eep
 	$(REMOVE) $(TARGET).cof
@@ -600,7 +600,7 @@ clean_list :
 
 
 # Include the dependency files.
-#-include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
+#-include $(shell mkdir build/.dep 2>/dev/null) $(wildcard build/.dep/*)
 
 
 # Listing of phony targets.
