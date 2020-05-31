@@ -58,7 +58,7 @@ class Mpu6050
 		bool GetAccelerometer(int* ax, int* ay, int* az);
 		bool GetGyroscope(ubyte* buffer);
 		bool GetGyroscope(int* gx, int* gy, int* gz);
-		bool GetTemperature(int* temp);
+		bool GetTemperature(uint8_t * outBuffer);
 };
 
 #endif /* MPU6050_H_ */

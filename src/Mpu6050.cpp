@@ -64,12 +64,10 @@ bool Mpu6050::GetGyroscope(int *gx, int *gy, int *gz)
     return true;
 }
 
-bool Mpu6050::GetTemperature(int *temp)
+bool Mpu6050::GetTemperature(uint8_t * outBuffer)
 {
-    uint8_t buff[2];
-    if (!TwiReadFromReg(addr, TEMPH, buff, 2))
+    if (!TwiReadFromReg(addr, TEMPH, outBuffer, 2))
         return false;
 
-    *temp = buff[0] << 8 | buff[1];
     return true;
 }
