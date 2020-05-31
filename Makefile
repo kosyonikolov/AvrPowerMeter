@@ -62,7 +62,7 @@ MCU = atmega328p
 #         F_CPU = 16000000
 #         F_CPU = 18432000
 #         F_CPU = 20000000
-F_CPU = 16000000
+F_CPU = 8000000
 
 
 # Output format. (can be srec, ihex, binary)
@@ -84,7 +84,7 @@ SRC =
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = src/main.cpp src/usart.cpp src/twi.cpp src/TwiUtils.cpp src/Mpu6050.cpp
+CPPSRC = src/main.cpp src/usart.cpp src/twi.cpp src/TwiUtils.cpp src/Mpu6050.cpp src/Hx711.cpp
 
 
 # List Assembler source files here.
@@ -276,9 +276,9 @@ LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 AVRDUDE_PROGRAMMER = arduino
 
 # com1 = serial port. Use lpt1 to connect to parallel port.
-AVRDUDE_PORT = com6    # programmer connected to serial device
+AVRDUDE_PORT = com5    # programmer connected to serial device
 
-AVRDUDE_BAUD = 57600
+AVRDUDE_BAUD = 38400
 
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep

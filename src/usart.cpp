@@ -14,13 +14,13 @@ void UsartInit()
 	sei();
 }
 
-void UsartSend(char data)
+void UsartSend(const char data)
 {
 	while(!(UCSR0A & (1<<UDRE0)));
 	UDR0 = data;
 }
 
-void UsartSend(char* data, int len)
+void UsartSend(const char* data, int len)
 {
 	while(len--)
 	{
@@ -29,7 +29,7 @@ void UsartSend(char* data, int len)
 	}
 }
 
-void UsartSend(char* szData)
+void UsartSend(const char* szData)
 {
 	while(*szData)
 	{
