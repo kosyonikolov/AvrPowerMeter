@@ -34,7 +34,7 @@ const uint8_t ERROR_PACKET_ID = 1;
 const uint8_t HEADER_BYTE_1 = 0xFF;
 const uint8_t HEADER_BYTE_2 = 0xFF;
 const uint8_t FOOTER_BYTE_1 = 0xF0;
-const uint8_t FOOTER_BYTE_2 = 0xF0;
+const uint8_t FOOTER_BYTE_2 = 0x0F;
 
 // ---------------------------------
 // --------- Field lengths ---------
