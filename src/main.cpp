@@ -22,19 +22,12 @@ int main(void)
         // header & footer
         dataPacket[0] = HEADER_BYTE_1;
         dataPacket[1] = HEADER_BYTE_2;
-        dataPacket[DATA_PACKET_LEN - 2] = FOOTER_BYTE_1;
-        dataPacket[DATA_PACKET_LEN - 1] = FOOTER_BYTE_2;
 
         errorPacket[0] = HEADER_BYTE_1;
         errorPacket[1] = HEADER_BYTE_2;
-        errorPacket[ERROR_PACKET_LEN - 2] = FOOTER_BYTE_1;
-        errorPacket[ERROR_PACKET_LEN - 1] = FOOTER_BYTE_2;
 
         // length and id (all packets are currently fixed size)
-        dataPacket[OFFSET_PACKET_LEN]  = DATA_PACKET_LEN - EXTRA_INFO_LEN;
         dataPacket[OFFSET_PACKET_ID]   = DATA_PACKET_ID;
-
-        errorPacket[OFFSET_PACKET_LEN] = ERROR_PACKET_LEN - EXTRA_INFO_LEN;
         errorPacket[OFFSET_PACKET_ID]  = ERROR_PACKET_ID;
 
         // set right side force reading to zero - no sensor on the right crankarm yet
@@ -50,7 +43,7 @@ int main(void)
     Hx711 adcLeft;
 
     // gain 32 -> use channel A
-    adcLeft.Init(3, 2, GAIN_32);
+    adcLeft.Init(7, 6, GAIN_32);
 
     if (!mpu.Init(GYRO_RANGE_2000, ACC_RANGE_8G))
     {

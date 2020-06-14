@@ -11,11 +11,11 @@
 // packet lenghts (not only payload)
 // ---------------------------------
 
-const uint8_t DATA_PACKET_LEN = 22;
-const uint8_t ERROR_PACKET_LEN = 7;
+const uint8_t DATA_PACKET_LEN = 19;
+const uint8_t ERROR_PACKET_LEN = 5;
 
-// total lenght of header, footer, id and packet length
-const uint8_t EXTRA_INFO_LEN = 2 * 2 + 1 + 1;
+// total lenght of header + id
+const uint8_t EXTRA_INFO_LEN = 2 + 1;
 
 const uint8_t MIN_PACKET_LEN = 1;
 const uint8_t MAX_PACKET_LEN = DATA_PACKET_LEN;
@@ -31,8 +31,8 @@ const uint8_t ERROR_PACKET_ID = 1;
 // -------- header & footer --------
 // ---------------------------------
 
-const uint8_t HEADER_BYTE_1 = 0xFF;
-const uint8_t HEADER_BYTE_2 = 0xFF;
+const uint8_t HEADER_BYTE_1 = 0xAA;
+const uint8_t HEADER_BYTE_2 = 0xAA;
 const uint8_t FOOTER_BYTE_1 = 0xF0;
 const uint8_t FOOTER_BYTE_2 = 0x0F;
 
@@ -54,8 +54,7 @@ const uint8_t TEMPERATURE_LEN = 2;
 // ---------------------------------
 
 // common for all packets
-const uint8_t OFFSET_PACKET_LEN  = 2;
-const uint8_t OFFSET_PACKET_ID   = 3;
+const uint8_t OFFSET_PACKET_ID   = 2;
 
 // data packet
 const uint8_t OFFSET_TIME        = OFFSET_PACKET_ID     +   1;

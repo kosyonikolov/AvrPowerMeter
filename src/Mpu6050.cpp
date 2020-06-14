@@ -18,8 +18,10 @@ bool Mpu6050::Init(uint8_t gyroRange, uint8_t accRange)
         return false; // sleep = 0 + clock = gyro X
     if (!TwiWriteToReg(addr, SMPLRT_DIV, 0))
         return false; // 8 KHz sample rate
-    if (!TwiWriteToReg(addr, CONFIG, 0))
-        return false; // no DLPF
+    
+    // DPLF 4 (20 Hz gyro bandwidth)
+    if (!TwiWriteToReg(addr, CONFIG, 4))
+        return false; 
     if (!TwiWriteToReg(addr, GYRO_CONFIG, gyroRange << 3))
         return false;
     if (!TwiWriteToReg(addr, ACCEL_CONFIG, accRange << 3))
