@@ -1,5 +1,6 @@
-build/*
-!build/Makefile
+build/
+.vscode/
+.cache/
 p1.eep
 p1.elf
 p1.hex
